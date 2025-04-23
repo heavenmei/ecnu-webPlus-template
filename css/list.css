@@ -1,0 +1,80 @@
+/** New List **/
+
+.news_list dl {
+  margin: 0;
+}
+
+.news_list dd {
+  margin-top: 40px;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.news-pic {
+  width: 270px;
+  margin-right: 40px;
+}
+
+.news-pic .imgbox_a {
+  padding-bottom: 66.67%;
+}
+
+.news-con {
+  overflow: hidden;
+  padding-top: 18px;
+}
+
+.news-con h1 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+.news-con h1 a:hover {
+  color: #ad0f19;
+}
+.news-con h2 {
+  margin: 0;
+  font-size: 14px;
+  color: #999;
+  margin: 20px 0 12px;
+}
+.news-con h2 img {
+  margin-top: -3px;
+  margin-right: 8px;
+}
+
+.news-con p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  line-height: 2;
+  height: 4em;
+  overflow: hidden;
+}
+.news-con-time::before {
+  content: url(../images/nico1.png);
+  position: relative;
+  top: 2px;
+  margin-right: 4px;
+  display: inline-block;
+}
+
+.news-con-read::before {
+  content: url(../images/nico2.png);
+  position: relative;
+  top: 2px;
+  margin-right: 4px;
+  margin-left: 14px;
+  display: inline-block;
+}
+
+/** 分页 **/
+
+.fenye ul {
+  margin: 0;
+}
+
+.fenye {
+  text-align: center;
+  margin-top: 70px;
+}

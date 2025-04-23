@@ -1,0 +1,465 @@
+@media only screen and (max-width: 1500px) {
+  .laos_list1 dd {
+    width: 48%;
+  }
+  .banner-2 {
+    height: 300px;
+  }
+  .foo1 {
+    width: 360px;
+  }
+  .foo2 {
+    padding-left: 35px;
+    margin-left: 35px;
+  }
+  .foo3 {
+    width: 260px;
+  }
+  .foo3-span {
+    background-position: 230px center;
+  }
+  .menu {
+    width: 270px;
+    margin-right: 40px;
+  }
+  .team-xx1-con2 dd {
+    font-size: 15px;
+  }
+  .team-xx2 {
+    padding: 30px;
+    margin-top: 25px;
+  }
+  .main1-1 {
+    width: 820px;
+    margin-right: 30px;
+  }
+  .main3-1 {
+    width: 390px;
+    margin-right: 30px;
+  }
+  .title-00 h1 {
+    font-size: 18px;
+  }
+  .title-00 h1 span {
+    font-size: 26px;
+  }
+  .tmore {
+    height: 28px;
+    line-height: 28px;
+    border-radius: 28px;
+  }
+  .fafa .flex-direction-nav a {
+    width: 44px;
+    height: 44px;
+    margin-top: -22px;
+  }
+  .fafa .flex-direction-nav .flex-prev {
+    left: 3%;
+  }
+
+  .fafa .flex-direction-nav .flex-next {
+    right: 3%;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  #header {
+    display: none;
+  }
+
+  #header-2 {
+    display: block;
+  }
+  .chenggao {
+    display: block;
+  }
+  .banner {
+    height: auto;
+  }
+  .menu,
+  .foo3,
+  .foo2 {
+    display: none;
+  }
+  .erji {
+    padding: 50px 0;
+  }
+  .fenye {
+    margin-top: 50px;
+  }
+  .erji-title {
+    padding-top: 0;
+  }
+  .foo-logo {
+    display: none;
+  }
+  .er {
+    margin: 0 auto;
+  }
+  .footer-1 {
+    padding: 30px 0 25px;
+  }
+  .foo1 {
+    float: none;
+    width: 100%;
+  }
+  .footer-2 .fl,
+  .footer-2 .fr {
+    float: none;
+    text-align: center;
+  }
+  .danpian-h1 {
+    font-size: 24px;
+  }
+  .erji-content-div {
+    margin-top: 30px;
+  }
+  .mianbaoxie {
+    display: none;
+  }
+  .pp65 {
+    padding: 50px 0;
+  }
+  .main1-1 {
+    width: 100%;
+    margin-right: 0px;
+    float: none;
+  }
+  .main1-2 {
+    margin-top: 30px;
+  }
+  .main3-1 {
+    width: 100%;
+    margin-right: 0px;
+    float: none;
+    margin-bottom: 30px;
+  }
+  .main3-3-dl dl {
+    margin-top: 0;
+    margin-left: -3%;
+  }
+  .main3-3-dl dd {
+    width: 22%;
+    margin-top: 0;
+    margin-left: 3%;
+  }
+  .main3-1-div .llist {
+    margin-top: 0;
+  }
+  .main3-1 .title-00 {
+    padding-bottom: 10px;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .main1-1-left {
+    width: 100%;
+    margin-right: 0px;
+    float: none;
+  }
+  .main1-1-right dd:first-child {
+    padding-top: 15px;
+  }
+  .pp65 {
+    padding: 40px 0;
+  }
+
+  .danpian-h1 {
+    font-size: 22px;
+  }
+  .news_list dd {
+    margin-top: 30px;
+  }
+  .news-pic {
+    width: 230px;
+    margin-right: 30px;
+  }
+  .news-con {
+    padding-top: 15px;
+  }
+  .erji {
+    padding: 40px 0;
+  }
+  .fenye {
+    margin-top: 40px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .team-box-title img {
+    display: none;
+  }
+  .laos_pic {
+    width: 100px;
+  }
+  .laos_con {
+    padding-top: 15px;
+    padding-left: 15px;
+  }
+  .laos_con-p {
+    font-size: 13px;
+  }
+  .laos_list1 dd {
+    float: none;
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 0;
+  }
+  .laos_list1 dl {
+    margin-left: 0;
+  }
+  .pp65 {
+    padding: 30px 0;
+  }
+
+  .sanji-dl {
+    padding-bottom: 10px;
+  }
+  .sanji-dl dd > a {
+    padding: 6px 12px;
+  }
+  .sanji-dl dd {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .llist {
+    padding-top: 5px;
+  }
+  .llist dd span.span_11 {
+    right: 0;
+    font-size: 13px;
+  }
+  .llist dd {
+    height: 46px;
+    line-height: 45px;
+    font-size: 15px;
+    background-position: 0 50%;
+    padding-left: 15px;
+    background-size: 5px;
+    padding-right: 80px;
+  }
+  .llist dd > a {
+    font-size: 15px;
+  }
+  .erji-content-div {
+    margin-top: 20px;
+  }
+  .danpian-h1 {
+    font-size: 20px;
+  }
+  .dan-a a {
+    font-size: 14px;
+  }
+
+  .erji {
+    padding: 20px 0 30px;
+  }
+  .fenye {
+    margin-top: 30px;
+  }
+  .erji-title h1 {
+    font-size: 20px;
+  }
+  .news_list dd {
+    margin-top: 20px;
+  }
+  .news-pic {
+    float: none;
+    width: 100%;
+    margin-right: 0;
+  }
+  .news-con {
+    padding: 15px 0;
+  }
+  .news-con h2 {
+    font-size: 12px;
+    margin: 15px 0 10px;
+  }
+  .footer-2 {
+    font-size: 12px;
+  }
+  .footer-1 {
+    padding: 20px 0 15px;
+  }
+  .fenye {
+    font-size: 12px;
+  }
+  .fenye .pagination > li > a,
+  .fenye .pagination > li > span {
+    padding: 5px 10px;
+  }
+  .logo-2 {
+    width: 240px;
+    margin-top: 16px;
+  }
+  .team-item {
+    margin-top: 20px;
+  }
+  .team-title {
+    padding: 12px 15px;
+  }
+  .team-box {
+    padding: 15px;
+  }
+  .team-box-title {
+    float: none;
+    width: 100%;
+    background-image: none;
+    border-bottom: 1px solid #ad0f19;
+    padding-bottom: 10px;
+  }
+  .team-dl dd {
+    margin-right: 30px;
+    margin-bottom: 0;
+    margin-top: 15px;
+    font-size: 15px;
+  }
+  .team-box-div + .team-box-div {
+    margin-top: 20px;
+  }
+  .team-xx1-pic {
+    float: none;
+    width: 100%;
+    margin-right: 0;
+  }
+  .team-xx1-con2 dd {
+    float: none;
+    width: 100% !important;
+    margin-left: 0;
+  }
+  .team-xx1-con2 dl {
+    margin-left: 0;
+  }
+  .team-tags {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  .team-xx1-con {
+    padding: 20px 0 10px;
+  }
+  .team-xx1-con1 {
+    padding-bottom: 12px;
+  }
+  .team-xx1-con2 {
+    padding-top: 0px;
+  }
+  .team-xx2 {
+    padding: 20px;
+    margin-top: 20px;
+  }
+  .team-xx2-title {
+    font-size: 18px;
+  }
+  .team-xx2-con {
+    font-size: 15px;
+    margin-top: 10px;
+  }
+  .title-00 h1 span {
+    font-size: 22px;
+  }
+  .title-00 h1 {
+    font-size: 12px;
+  }
+  .tmore {
+    height: 24px;
+    line-height: 24px;
+    border-radius: 24px;
+    font-size: 12px;
+  }
+  .title-00 {
+    position: relative;
+    padding-bottom: 20px;
+  }
+  .main1-con {
+    margin-top: 20px;
+  }
+  .main1-2-date {
+    margin-right: 15px;
+  }
+  .main1-2-dl dd + dd {
+    margin-top: 15px;
+  }
+  .main2 .title-00 h1 {
+    text-align: left;
+  }
+  .main2-item {
+    box-shadow: 0px 2px 9.8px 0.2px rgba(84, 84, 84, 0.3);
+  }
+  .main2-item .main2-title {
+    color: #ad0f19;
+  }
+
+  .main2-item .main2-dl dd.dd1 {
+    background-image: url(../images/main2-ico1h.png);
+  }
+  .main2-item .main2-dl dd.dd2 {
+    background-image: url(../images/main2-ico2h.png);
+  }
+  .main2-item .main2-dl dd.dd3 {
+    background-image: url(../images/main2-ico3h.png);
+  }
+  .main2-item .main2-dl dd.dd4 {
+    background-image: url(../images/main2-ico4h.png);
+  }
+  .main2-list-wp {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  .main2 .title-00 {
+    position: relative;
+    padding-bottom: 10px;
+  }
+  .main2-item {
+    padding: 5px 15px 15px;
+  }
+  .main2-item-con {
+    margin-top: 15px;
+  }
+  .main2-dl {
+    padding-top: 0;
+  }
+  .main2-dl dd + dd {
+    margin-top: 10px;
+  }
+  .main2-pic {
+    width: 95px;
+    margin-right: 15px;
+  }
+  .main2 {
+    padding-bottom: 20px;
+  }
+  .main3-1 {
+    margin-bottom: 25px;
+  }
+  .main1-2 {
+    margin-top: 25px;
+  }
+  .main3-3-dl dl {
+    margin-top: -3%;
+    margin-left: -3%;
+  }
+  .main3-3-dl dd {
+    width: 47%;
+    margin-top: 3%;
+    margin-left: 3%;
+  }
+  .main3-3-dl dd > a {
+    font-size: 15px;
+    height: 120px;
+    padding-top: 25px;
+  }
+  .fafa .flex-direction-nav a {
+    width: 34px;
+    height: 34px;
+    margin-top: -17px;
+  }
+  .fafa .flex-direction-nav .flex-prev {
+    left: 15px;
+  }
+
+  .fafa .flex-direction-nav .flex-next {
+    right: 15px;
+  }
+}
+@media only screen and (max-width: 500px) {
+}
+@media only screen and (max-width: 350px) {
+}
