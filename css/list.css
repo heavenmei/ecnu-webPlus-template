@@ -5,7 +5,7 @@
 }
 
 .news_list dd {
-  margin-top: 40px;
+  margin-top: 16px;
   border-bottom: 1px solid #ebebeb;
 }
 
@@ -20,7 +20,7 @@
 
 .news-con {
   overflow: hidden;
-  padding-top: 18px;
+  padding-bottom: 10px;
 }
 
 .news-con h1 {

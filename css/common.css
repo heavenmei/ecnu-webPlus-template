@@ -429,7 +429,11 @@ div.wp {
   color: #fff;
   font-weight: bold;
   text-align: center;
+}
+
+.menu-h1 a {
   padding: 25px 0;
+  display: block;
 }
 
 .menu-dl {
@@ -439,6 +443,10 @@ div.wp {
 
 .menu-dl dl {
   margin: 0;
+}
+
+.menu-dl dd {
+  margin-bottom: 0;
 }
 
 .menu-dl dd > a {
@@ -478,25 +486,45 @@ div.wp {
   display: none;
 }
 
-.menu-dl dd > a::after {
+.menu-dl dd:has(dl) > a::after {
   content: url(../images/jiao1.png);
   background-color: transparent;
   position: relative;
   display: inline-block;
 }
 
-.menu-dl dd.cur > a::after {
+.menu-dl dd.cur:has(dl) > a::after {
   content: url(../images/jiao1h.png);
   background-color: transparent;
   position: relative;
   display: inline-block;
 }
 
-.menu-dl dd.cur ul {
-  display: block;
+.menu-dl .level-3 {
+  margin: 0;
+  padding: 0 15px;
+  position: relative;
+  text-align: center;
 }
 
-.menu-dl dd ul {
+.menu-dl .level-3 > a {
+  padding-left: 32px;
+  margin: 16px 0 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 400;
+}
+.menu-dl .level-3.cur > a {
+  color: #ad0f19;
+  background-color: transparent;
+  margin-top: 0;
+}
+.menu-dl .level-3 > a::after {
+  position: none !important;
+  height: 0;
+}
+
+.menu-dl dd dl {
   margin: 0;
   /*background-color: #ad0f19;*/
   padding: 18px 15px 25px;
