@@ -2,11 +2,15 @@ function loadList() {
   var $list_item_data = $(`#list-item-data tbody tbody tr`);
   var $list_con = $(`#news_list`);
   let list_list = [];
+  const data = [];
 
+  // 只有一个文章时展示全文
   if ($list_item_data.length === 0) {
-    //aside显示，文章为空
+    // aside显示，文章为空
     $("#article-con").removeClass("hidden");
     $("#article-content").text("暂无内容");
+    var $article_data = $(`#list-item-data`);
+    $list_con.append($article_data);
     return;
   }
 
@@ -17,19 +21,15 @@ function loadList() {
     const title = $(tds[0]).find("a:first");
     const pic = $(tds[1]).find("img");
     const content = $(tds[4]).find("a").text();
+    data.push({
+      pic,
+      title,
+      read,
+      date,
+      content,
+    });
 
     var $img_item = $(`<dd>
-                  <div class="news-pic fl">
-                    <a
-                      href="${pic.attr("href")}"
-                      target="_blank"
-                      title="${pic.attr("title")}"
-                      class="imgbox_a imgbox_hover"
-                      ><img
-                        src="${pic.attr("src").replace("_s.", ".")}"
-                        alt=""
-                    /></a>
-                  </div>
                   <div class="news-con">
                     <h1 class="tver">
                       <a
@@ -42,14 +42,13 @@ function loadList() {
                      <span class="news-con-time">时间：${date}</span>
                       <span class="news-con-read">阅读量：${read}</span>
                     </h2>
-                    <p>
-                     ${content}
-                    </p>
+                    ${content && `<p>${content}</p>`}
                   </div>
                   <div class="clear"></div>
                 </dd>`);
     list_list.push($img_item);
   });
+  console.log("=== loadList ===", data);
   $list_con.append(list_list);
 }
 

@@ -87,10 +87,14 @@ function loadNews() {
 function loadNotices() {
   var $notice_data = $("tr .notice-data");
   var $notice_con = $("#notices_list");
+  var notice_list = [];
   $notice_data.each(function (i, item) {
     let date = $(item).find("div").text().split("-");
     let data_a = $(item).find("a");
-    // console.log("=== loadNotices ===", date, data_a);
+    notice_list.push({
+      date: date,
+      data_a: data_a,
+    });
 
     var $not_item = $(`<dd>
                     <div class="main1-2-date fl">
@@ -109,6 +113,7 @@ function loadNotices() {
                     </dd>`);
     $notice_con.append($not_item);
   });
+  console.log("=== loadNotices ===", notice_list);
 
   $("#notices-more-a").attr(
     "href",
@@ -120,14 +125,15 @@ function loadNotices() {
 function loadActivities() {
   var $act_data = $("tr .activity-data");
   var $act_con = $("#activity_list");
+  var act_list = [];
   $act_data.each(function (i, item) {
-    // 标题 报告主题 报告人 报告地点 报告时间 报告日期
+    // 标题 作者 发布时间 浏览次数 简介
     const text = $(item)
       .find("td")
       .text()
       .split("\n")
       .filter((x) => x.trim() !== "");
-    // console.log("=== loadActivities ===", text);
+    act_list.push(text);
 
     var $act_item = $(`  <div class="item">
                   <a
@@ -136,27 +142,38 @@ function loadActivities() {
                     title="${$(item).find("a:first").attr("title")}"
                     class="main2-item"
                   >
-                    <div class="main2-title tver">${text[1]}</div>
+                    <div class="main2-title tver">${text[0]}</div>
                     <div class="main2-item-con">
                       <div class="main2-pic fl">
                         <div class="imgbox_a">
-                          <img
+                          ${
+                            $(item).find("img").attr("src")
+                              ? `<img
                             src="${$(item)
                               .find("img")
                               .attr("src")
                               .replace("_s.", ".")}"
                             alt=""
-                          />
+                          />`
+                              : ""
+                          }
                         </div>
                       </div>
                       <div class="main2-dl">
                         <dl>
-                          <dd class="dd1 tver">报告人：${text[2] ?? ""}</dd>
-                          <dd class="dd3 tver">地点：${text[3] ?? ""}</dd>
-                          <dd class="dd2 tver">时间：${text[5] ?? ""} ${
-      text[4] ?? ""
-    }</dd>
-                          <dd class="dd4">主办单位：${text[6] ?? ""}</dd>
+                        ${
+                          text[1]
+                            ? `<dd class="dd1 tver">发布时间：${text[1]}</dd>`
+                            : ""
+                        }
+                        ${
+                          text[2]
+                            ? `<dd class="dd1 tver">浏览次数：${text[2]}</dd>`
+                            : ""
+                        }
+                        ${
+                          text[3] ? `<dd class="dd4">简介：${text[3]}</dd>` : ""
+                        }
                         </dl>
                       </div>
                       <div class="clear"></div>
@@ -165,6 +182,7 @@ function loadActivities() {
                 </div>`);
     $act_con.prepend($act_item);
   });
+  console.log("=== loadActivities ===", act_list);
 
   $(".main2-list").owlCarousel({
     margin: 0,
@@ -194,9 +212,9 @@ function loadActivities() {
     },
   });
 
-  $("#notices-more-a").attr(
+  $("#activity-more-a").attr(
     "href",
-    $(".notice-data-con .more-link").attr("href")
+    $(".activity-data-con .more-link").attr("href")
   );
 }
 

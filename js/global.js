@@ -24,6 +24,72 @@ function appendSubColumn(columnName, href) {
   getLastColumn().children.push(genColumnObj(columnName, href));
 }
 
+/**
+ * 将 menu ul li 转换为树状数组
+ */
+function ulToTree($ul, parent) {
+  var result = [];
+
+  $ul.children("li").each(function () {
+    var $li = $(this);
+    var $a = $li.children("a").first();
+    var $subUl = $li.children("ul").first();
+
+    var node = {
+      name: $a.attr("title"),
+      href: $a.attr("href"),
+      parent: parent,
+      children: $subUl.length > 0 ? ulToTree($subUl, $a.attr("title")) : [],
+    };
+
+    result.push(node);
+  });
+
+  return result;
+}
+
+/**
+ * 递归创建 侧边菜单
+ */
+function createSideMenuItems(menuData, depth, current_column) {
+  depth = depth || 1;
+  var menuItems = [];
+
+  $.each(menuData, function (index, item) {
+    let select = item.name === current_column;
+    // 创建当前层级的菜单项
+    var $menuItem;
+    if (depth === 1) {
+      $menuItem = $(
+        `<div class="menu-h1 level-${depth}"><a href="${item.href}" alt="${item.alt}">${item.name}</a></div>`
+      );
+    } else if (depth === 2 || item.parent === current_column || select) {
+      $menuItem = $(`
+        <dd class="${select ? "cur" : ""} level-${depth}">
+        <a href="${item.href}">${item.name} 
+        </a>
+        </dd>
+        `);
+    }
+
+    // 如果有子菜单，递归创建
+    if (item.children && item.children.length > 0) {
+      var $subMenu = $(`<div class="menu-dl level-${depth}"><dl></dl></div>`);
+      var $subItems = createSideMenuItems(
+        item.children,
+        depth + 1,
+        current_column
+      );
+      $subMenu.append($subItems);
+      $menuItem.append($subMenu);
+    }
+
+    menuItems.push($menuItem);
+  });
+
+  return menuItems;
+}
+
 // * 处理侧边菜单
 function loadMenu() {
   // * position
@@ -40,9 +106,9 @@ function loadMenu() {
       </dd>`
     );
 
-    if (i <= 2) {
-      current_column = $(item).text();
-    }
+    // if (i <= 2) {
+    // }
+    current_column = $(item).text();
     target_column = $(item).text();
     position_info_list.push($position_item);
   });
@@ -52,117 +118,90 @@ function loadMenu() {
 
   // * menu
   var $menu = $("#menu");
-
-  var $column_list_data = $("#column-list-data a[title]");
-  console.log("===", $column_list_data.length);
-
-  //  大标题
   var columnTitle = $("#column-title-data span").text();
-  var $menu_item = $(`<div class="menu-h1">${columnTitle}</div>`);
-  $menu.append($menu_item);
+  var menuTree = ulToTree($("#wp_nav_w11").children("ul"));
 
-  // 二级标题不为空
-  if ($column_list_data.length > 1) {
-    var $column_list = $(`#column-list-data td`);
-    var $menu_dl = $(`<div class="menu-dl"><dl></dl></div>`);
+  const targetMenuTree = menuTree.find((item) => item.name === columnTitle);
+  const sideMenuData = createSideMenuItems([targetMenuTree], 1, current_column);
+  $menu.append(sideMenuData);
+}
 
-    let asideItemList = [];
-    $column_list.each(function (i, item) {
-      if ($(item).hasClass("maincolumn-xx")) {
-        let text = $(item).find("a[title]").attr("title");
-        let href = $(item).find("a[title]").attr("href");
-        columnDataMap.push(genColumnObj(text, href));
-      } else if ($(item).hasClass("subcolumn-xx")) {
-        let text = $(item).find("a[title]").attr("title");
-        let href = $(item).find("a[title]").attr("href");
-        appendSubColumn(text, href);
-      }
-    });
-    console.log("=== columnDataMap", current_column, columnDataMap);
+/**
+ * 递归创建菜单项（桌面端）
+ */
+function createMenuItems(menuData, depth, maxDepth = 2) {
+  depth = depth || 1;
+  if (depth > maxDepth) return;
+  var menuItems = [];
 
-    for (let mainColumn of columnDataMap) {
-      var $aside_item;
-      let select = mainColumn.name === current_column;
+  $.each(menuData, function (index, item) {
+    // 创建当前层级的菜单项
+    var $menuItem = $(`<li class="level-${depth}">
+      <a href="${item.href}" alt="">${item.name}</a>
+    </li>`);
 
-      $aside_item = $(`
-        <dd class="${select ? "cur" : ""}">
-            <a href="${mainColumn.href}">${mainColumn.name} 
-            </a>
-        </dd>
-        `);
-
-      if (mainColumn.hasChildren()) {
-        let subList = mainColumn.children.map((subColumn) => {
-          return $(`<li class="${
-            subColumn.name === target_column ? "cur" : ""
-          }">
-                <a href="${subColumn.href}">${subColumn.name}</a>
-            </li>`);
-        });
-
-        $child_item = $(`<ul class="list-unstyled"></ul>`);
-        $child_item.append(subList);
-        $aside_item.append($child_item);
-      }
-      asideItemList.push($aside_item);
+    // 如果有子菜单，递归创建
+    if (item.children && item.children.length > 0) {
+      var $subMenu = $(`<ul class="list-unstyled sub-level-${depth}"></ul>`);
+      var $subItems = createMenuItems(item.children, depth + 1);
+      $subMenu.append($subItems);
+      $menuItem.append($subMenu);
     }
-    $menu_dl.find("dl").append(asideItemList);
-  }
-  $menu.append($menu_dl);
+
+    menuItems.push($menuItem);
+  });
+
+  return menuItems;
+}
+
+/**
+ * 递归创建移动端菜单项
+ */
+function createMobileMenuItems(menuData, depth, maxDepth = 2) {
+  depth = depth || 1;
+  if (depth > maxDepth) return;
+  var menuItems = [];
+
+  $.each(menuData, function (index, item) {
+    // 创建当前层级的菜单项
+    var $menuItem = $(`<li class="level-${depth}">
+      <a href="${item.href}" alt="">${item.name}</a>
+    </li>`);
+
+    // 如果有子菜单，添加展开按钮并递归创建
+    if (item.children && item.children.length > 0) {
+      // 只在第一层添加 jiaspan
+      if (depth === 1) {
+        $menuItem.find("a").after('<span class="jiaspan"></span>');
+      }
+
+      var $subMenu = $(`<ul class="list-unstyled sub-level-${depth}"></ul>`);
+      var $subItems = createMobileMenuItems(item.children, depth + 1);
+      $subMenu.append($subItems);
+      $menuItem.append($subMenu);
+    }
+
+    menuItems.push($menuItem);
+  });
+
+  return menuItems;
 }
 
 // * 处理导航菜单
 function loadNav() {
-  var $navA = $("#menu1tab a");
-  var $navSub = $("#menuSubTab a");
+  var $navA = $("#wp_nav_w11").children("ul").children("li");
   var $banner = $("#nav");
   var $navMobile = $("#nav-mobile");
-  let menuMobileList = [];
-  let bannerList = [];
 
-  $navA.each(function (index, item) {
-    var $bannerItem = $(`<li>
-                    <a href="${$(item).attr("href")}"  alt="${$(item).attr(
-      "alt"
-    )}">${$(item).text()}</a></li>`);
+  var menuTree = ulToTree($("#wp_nav_w11").children("ul"));
+  console.log("🚀 ~ loadMenu ~ menuTree:", menuTree);
 
-    let $navMobileItem = $(`<li>
-        <a href="${$(item).attr("href")}" alt="${$(item).attr("alt")}">${$(
-      item
-    ).text()}</a>
-        <span class="jiaspan"></span>
-        </li>`);
-
-    if ($(item).text() === "资料下载") {
-      $subWrap = $(`<ul class="list-unstyled"></ul>`);
-      $subMobileWrap = $(`<ul class="list-unstyled"></ul>`);
-      $navSub.each((_, sub) => {
-        var $subItem = $(
-          `<li><a href="${$(sub).attr("href")}"  alt="${$(sub).attr(
-            "alt"
-          )}">${$(sub).text()}</a></li>`
-        );
-        var $subItem2 = $(
-          `<li><a href="${$(sub).attr("href")}"  alt="${$(sub).attr(
-            "alt"
-          )}">${$(sub).text()}</a></li>`
-        );
-
-        $subWrap.append($subItem);
-        $subMobileWrap.append($subItem2);
-      });
-
-      $bannerItem.append($subWrap);
-      $navMobileItem.append($subMobileWrap);
-    }
-
-    bannerList.push($bannerItem);
-    menuMobileList.push($navMobileItem);
-  });
+  // 使用递归函数创建菜单
+  var bannerList = createMenuItems(menuTree, 1);
+  var menuMobileList = createMobileMenuItems(menuTree, 1);
 
   $banner.append(bannerList);
   $navMobile.append(menuMobileList);
-  console.log("=== navList ===", bannerList);
 
   $(".nav>ul>li").hover(
     function () {
